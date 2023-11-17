@@ -4,19 +4,14 @@
  */
 package Taller;
 
+
 /**
- *
- * @author IngSis
+ *@santiago vidal martinez
+ *@David Santiago Ortega Albán
  */
 public class Automovil extends Vehiculo{
     private int numeroPuertas;
-    private int horaSalida;
-    private int horaEntrada;
 
-    // Constructores, getters y setters
-
-    // Otros métodos específicos para automóviles
-    
     public Automovil(int numeroPuertas, String marca, String modelo, String placa, int horaEntrada) {
         super(marca, modelo, placa,horaEntrada);
         this.numeroPuertas = numeroPuertas;
