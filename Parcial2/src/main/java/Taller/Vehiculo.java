@@ -1,19 +1,16 @@
 package Taller;
 
 /**
- *
- * @author IngSis
+ *@santiago vidal martinez
+ *@David Santiago Ortega Albán
  */
 public class Vehiculo {
-    private String marca;
+  private String marca;
     private String modelo;
     private String placa;
     private int horaSalida;
     private int horaEntrada;
 
-    // Constructores, getters y setters
-
-    // Otros métodos específicos si es necesario
 
     public Vehiculo(String marca, String modelo, String placa, int horaEntrada) {
         this.marca = marca;
@@ -22,7 +19,11 @@ public class Vehiculo {
         this.horaEntrada = horaEntrada;
         horaSalida = 0;
     }
-
+    
+    public int CalcularCosto (int Costohora){
+        return Costohora*(getHoraSalida()- getHoraEntrada());
+    }
+    
     public String getMarca() {
         return marca;
     }
@@ -59,6 +60,12 @@ public class Vehiculo {
         return horaEntrada;
     }
 
+    public void setHoraEntrada(int horaEntrada) {
+        this.horaEntrada = horaEntrada;
+    }
+    
+    
+}
     public void setHoraEntrada(int horaEntrada) {
         this.horaEntrada = horaEntrada;
     }
