@@ -5,11 +5,11 @@
 package Taller;
 
 /**
- *
- * @author IngSis
+ *@santiago vidal martinez
+ *@David Santiago Ortega Albán
  */
-public class Motocicleta extends Vehiculo {
-    private int cilindrada;
+public class Motocicleta extends Vehiculo{
+ private int cilindrada;
 
     public int getCilindrada() {
         return cilindrada;
@@ -24,5 +24,6 @@ public class Motocicleta extends Vehiculo {
         super(marca, modelo, placa, horaEntrada);
         this.cilindrada = cilindrada;
     }
+    
     
 }
