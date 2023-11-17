@@ -9,7 +9,7 @@ import java.util.LinkedList;
  *@santiago vidal martinez
  *@David Santiago Ortega Albán
  */
-public class main {
+public class Main {
 
     public static void main(String[] args) {
         
@@ -26,7 +26,7 @@ public class main {
         automoviles.add(auto);
         
         LinkedList <Vehiculo> motocicletas = new LinkedList<>();
-        
+        // moto creado por defecto
         Motocicleta moto = new Motocicleta("Honda", "CBR600", "XYZ789",600,12);
         motocicletas.add(moto);
         
@@ -61,7 +61,7 @@ public class main {
         });
         
         
-        // Listado de automovile
+        // Listado de automoviles
         get("/automoviles", (req, res) -> {
             res.type("application/json");
             return gson.toJson(automoviles);
@@ -104,16 +104,16 @@ public class main {
                 if (m.getPlaca() == null ? placa == null : m.getPlaca().equals(placa)) {
                     m.setHoraSalida(horaSalida);
                     flag = true;
-                    return gson.toJson("veiculo retirado");
+                    return gson.toJson("Moto retirado");
                 }
             }
             if (flag==false) {
                 for(Vehiculo a : automoviles){
-                if (a.getPlaca()==placa) {
+                if (a.getPlaca() == null ? placa == null : a.getPlaca().equals(placa)) {
                     a.setHoraSalida(horaSalida);
                     motocicletas.remove(a);
                     flag = true;
-                    return gson.toJson("veiculo retirado");
+                    return gson.toJson("Auto retirado");
                 }
             }
             }
@@ -123,14 +123,55 @@ public class main {
         // Listado de automovileActuales
         get("/automovilesAcuales", (req, res) -> {
             res.type("application/json");
-            return gson.toJson(automoviles);
+            LinkedList <Vehiculo> actuales = new LinkedList<>();
+            res.type("application/json");
+            for(Vehiculo e : automoviles ){
+                if(e.getHoraSalida() == 0){
+                actuales.add(e);
+                }
+            }
+        return gson.toJson(actuales);
         });
         // lista de motos acuales
         get("/motosActuales", (req, res) -> {
             res.type("application/json");
-            return gson.toJson(motocicletas);
+            LinkedList <Vehiculo> actuales = new LinkedList<>();
+            for(Vehiculo e : motocicletas ){
+                if(e.getHoraSalida() == 0){
+                    actuales.add(e);
+                }
+            }
+        return gson.toJson(actuales);
         });
         
+        //reporte de motos
+        get("/motosReporte", (req, res) -> {
+            res.type("application/json");
+            int a = 0;
+            int Ganancias = 0;
+            for(Vehiculo e : motocicletas){
+                if (e.getHoraSalida() != 0) {
+                    Ganancias += e.CalcularCosto(5000);
+                    a++;
+                }
+            }
+            return gson.toJson("Total de motos Retiradas:"+ a 
+                    + "|||  Ganancias del Dia:"+ Ganancias); 
+        });
+        //reporte de autos
+        get("/AutomovilesReporte", (req, res) -> {
+            res.type("application/json");
+            int a = 0;
+            int Ganancias = 0;
+            for(Vehiculo e : automoviles){
+                if (e.getHoraSalida() != 0) {
+                    Ganancias += e.CalcularCosto(10000);
+                    a++;
+                }
+            }
+            return gson.toJson("Total de Autos Retirados:"+ a 
+                    + "|||   Ganancias del Dia:"+ Ganancias); 
+        });
         
     }
 }
